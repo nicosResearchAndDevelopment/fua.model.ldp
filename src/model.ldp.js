@@ -163,7 +163,7 @@ module.exports = ({
     //
     //Object.defineProperties(LDP, {});
 
-    ldp = new LDP({'@id': `${namespace}${vocab}ldp`});
+    ldp = new LDP();
 
     if (to_space) {
 
