@@ -88,6 +88,7 @@ module.exports = ({
             Object.defineProperties(this, {
                 'RDFSource':    {
                     value: require('./model.ldp.RDFSource.js')({
+                        'fs':        fs,
                         'IM':        IM,
                         'definedBy': definedBy,
                         'namespace': namespace,
