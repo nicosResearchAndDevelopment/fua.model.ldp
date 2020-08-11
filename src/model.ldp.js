@@ -88,7 +88,7 @@ module.exports = ({
             Object.defineProperties(this, {
                 'RDFSource':    {
                     value: require('./model.ldp.RDFSource.js')({
-                        'fs':        fs,
+
                         'IM':        IM,
                         'definedBy': definedBy,
                         'namespace': namespace,
@@ -102,6 +102,7 @@ module.exports = ({
                 },
                 'NonRDFSource': {
                     value: require('./model.ldp.NonRDFSource.js')({
+                        'fs':        fs,
                         'path':      path,
                         'IM':        IM,
                         'definedBy': definedBy,
