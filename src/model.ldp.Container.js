@@ -1,40 +1,31 @@
 module.exports = ({
-                      'IM':        IM,
+                      //'IM':        IM,
                       'definedBy': definedBy,
                       'namespace': namespace,
                       'vocab':     vocab,
-                      'hrt':       hrt = () => Date.now() / 1000,
-                      'uuid':      uuid,
-                      'space':     space,
+                      //'hrt':       hrt = () => Date.now() / 1000,
+                      //'uuid':      uuid,
+                      //'space':     space,
                       'RDFSource': RDFSource
                   }) => {
-
-    //region fn
-    //endregion fn
+    const
+        IM = fua['model']['IM']
+    ; // const
 
     let Container = (node, parameter = {
         'contains_validator': IM['$default_validator']
     }) => {
 
         parameter['contains_validator'] = ((parameter['contains_validator']) ? parameter['contains_validator'] : IM['$default_validator']);
-
         node['@type'] = IM['$build_type'](node['@type'], "ldp:Container");
-
         node = RDFSource(node, parameter);
-
         node = IM['$add_array'](
             node,
             "contains",
             ((node['contains'] && node['contains'].length > 0) ? IM['$build_array'](node['contains']) : undefined),
             parameter['contains_validator']
         );
-        //Object.defineProperties(node, {
-        //    '$serialize': {
-        //        'configurable': true,
-        //        value:          IM['$serialize'](Container, node)
-        //    }
-        //});
-        node          = IM['$instance_serializer'](node, Container);
+        node = IM['$instance_serializer'](node, Container);
 
         return node;
 
@@ -56,8 +47,6 @@ module.exports = ({
             }
         }
     });
-
-    //Object.seal(Container);
 
     return Container;
 

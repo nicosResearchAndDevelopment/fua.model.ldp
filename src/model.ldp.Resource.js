@@ -1,16 +1,20 @@
 module.exports = ({
-                      'IM':        IM,
+                      //'IM':        IM,
                       'definedBy': definedBy,
                       'namespace': namespace,
-                      'vocab':     vocab,
-                      'hrt':       hrt = () => Date.now() / 1000,
-                      'uuid':      uuid,
-                      'space':     space
+                      'vocab':     vocab
+                      //'hrt':       hrt = () => Date.now() / 1000,
+                      //'uuid':      uuid,
+                      //'space':     space
                   }) => {
 
     const
-        rdfs_Resource = space.get(`rdfs:Resource`)
+        model         = fua['model'],
+        IM            = model['IM'],
+        rdfs_Resource = model['rdfs']['Resource']
+        //rdfs_Resource = space.get(`rdfs:Resource`)
     ; // const
+
     //error first
     if (!rdfs_Resource)
         throw new Error(`IM.ldp.Resource : 'rdfs:Resource is missing.`);

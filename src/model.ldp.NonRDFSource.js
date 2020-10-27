@@ -1,16 +1,22 @@
 module.exports = ({
-                      'path':      path,
-                      'fs':        fs
-                      ,
-                      'IM':        IM,
+                      //'path':      path,
+                      //'fs':        fs
+                      //,
+                      //'IM':        IM,
                       'definedBy': definedBy,
                       'namespace': namespace,
                       'vocab':     vocab,
-                      'hrt':       hrt = () => Date.now() / 1000,
-                      'uuid':      uuid,
-                      'space':     space,
+                      //'hrt':       hrt = () => Date.now() / 1000,
+                      //'uuid':      uuid,
+                      //'space':     space,
                       'Resource':  Resource
                   }) => {
+
+    const
+        fs   = require("fs"),
+        path = require("path"),
+        IM   = fua['model']['IM']
+    ; // const
 
     const ___content_empty___ = Symbol(42);
 
@@ -112,7 +118,7 @@ module.exports = ({
             return node;
 
         } catch (jex) {
-            jex;
+            // TODO: jex;
             return null;
         } // try
 
