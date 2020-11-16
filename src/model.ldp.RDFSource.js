@@ -10,7 +10,7 @@ module.exports = ({
                   }) => {
 
     const
-        IM         = fua['model']['IM']
+        IM = fua['model']['IM']
     ; // const
 
     let RDFSource = (node, parameter) => {
@@ -22,7 +22,7 @@ module.exports = ({
         //Object.defineProperties(node, {
         //    '$serialize': {
         //        'configurable': true,
-        //        'value':        IM['$serialize'](RDFSource, node)
+        //        value:        IM['$serialize'](RDFSource, node)
         //    }
         //});
         node = IM['$instance_serializer'](node, RDFSource);
@@ -31,13 +31,14 @@ module.exports = ({
     };
 
     Object.defineProperties(RDFSource, {
-        '@id':             {'value': `${namespace}${vocab}RDFSource`},
-        '@type':           {'value': "rdfs:Class"},
-        'rdfs:label':      {'value': "RDFSource"},
-        'rdfs:comment':    {'value': "A Linked Data Platform Resource (LDPR) whose state is represented as RDF."},
-        'rdfs:subClassOf': {'value': [{'@id': "ldp:Resource"}]}
+        '@id':             {value: `${namespace}${vocab}RDFSource`},
+        '@type':           {value: "rdfs:Class"},
+        'fua:targetClass': {value: "ldp:RDFSource"},
+        'rdfs:label':      {value: "RDFSource"},
+        'rdfs:comment':    {value: "A Linked Data Platform Resource (LDPR) whose state is represented as RDF."},
+        'rdfs:subClassOf': {value: [{'@id': "ldp:Resource"}]}
         ,
-        '$serialize':      {'value': IM['$class_serializer'](Resource, RDFSource)}
+        '$serialize':      {value: IM['$class_serializer'](Resource, RDFSource)}
     }); // Object.defineProperties(RDFSource)
 
     return RDFSource;

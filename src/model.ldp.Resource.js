@@ -29,6 +29,7 @@ module.exports = ({
     Object.defineProperties(Resource, {
         '@id':             {value: `${namespace}${vocab}Resource`},
         '@type':           {value: "rdfs:Class"},
+        'fua:targetClass': {value: "ldp:Resource"},
         'rdfs:label':      {value: "Resource"},
         'rdfs:comment':    {value: "A HTTP-addressable resource whose lifecycle is managed by a LDP server."},
         'rdfs:subClassOf': {value: [{'@id': "rdfs:Resource"}]}

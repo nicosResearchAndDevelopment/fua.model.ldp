@@ -25,6 +25,7 @@ module.exports = ({
         // TODO: rdfs:Class, NOT owl:Class?!?
         '@type':            {'value': "rdfs:Class"},
         'rdfs:label':       {'value': "Basic Container"},
+        'fua:targetClass':  {'value': "ldp:BasicContainer"},
         'rdfs:comment':     {'value': "An LDPC that uses a predefined predicate to simply link to its contained resources."},
         'rdfs:subClassOf':  {'value': [{'@id': "ldp:Container"}]},
         "rdfs:isDefinedBy": {'value': [{"@id": "http://www.w3.org/ns/ldp#"}]}

@@ -10,32 +10,38 @@ module.exports = ({
                   }) => {
 
     const
-        model         = fua['model'],
-        IM            = model['IM']
-        //rdfs_Resource = space.get(`rdfs:Resource`)
-    ; // const
-    const
-        namespace = "ldp",
+        model     = fua['model'],
+        IM        = model['IM'],
+        prefix    = "ldp",
         definedBy = "http://www.w3.org/ns/ldp#",
         vocab     = ":"
     ;
-
     let
         ldp
     ;
 
     class LDP extends IM['Ontology'] {
+
         constructor() {
 
-            super({'prefix': namespace});
+            super({'prefix': prefix});
 
             Object.defineProperties(this, {
-                '@id':                           {value: definedBy},
+                '@id':                           {
+                    enumerable: false,
+                    value:      definedBy
+                },
                 //'@type':            {value: "owl:Ontology"},
-                'rdfs:label':                    {value: "W3C Linked Data Platform (LDP)"},
-                'rdfs:comment':                  {value: "This ontology provides an informal representation of the concepts and terms as defined in the LDP specification.  Consult the LDP specification for normative reference."},
+                'rdfs:label':                    {
+                    enumerable: false,
+                    value:      "W3C Linked Data Platform (LDP)"
+                },
+                'rdfs:comment':                  {
+                    enumerable: false,
+                    value:      "This ontology provides an informal representation of the concepts and terms as defined in the LDP specification.  Consult the LDP specification for normative reference."
+                },
                 'rdfs:seeAlso':                  {
-                    value: [
+                    enumerable: false, value: [
                         "http://www.w3.org/2012/ldp",
                         "http://www.w3.org/TR/ldp-ucr/",
                         "http://www.w3.org/TR/ldp/",
@@ -43,12 +49,16 @@ module.exports = ({
                         "http://www.w3.org/2011/09/LinkedData/"
                     ]
                 },
-                'dcterms:title':                 {value: "The W3C Linked Data Platform (LDP) Vocabulary"},
-                'vann:preferredNamespaceUri':    {value: definedBy},
-                'vann:preferredNamespacePrefix': {value: namespace},
+                'dcterms:title':                 {
+                    enumerable: false,
+                    value:      "The W3C Linked Data Platform (LDP) Vocabulary"
+                },
+                'vann:preferredNamespaceUri':    {enumerable: false, value: definedBy},
+                'vann:preferredNamespacePrefix': {enumerable: false, value: namespace},
                 // #
                 'Resource':                      {
-                    value: require('./model.ldp.Resource.js')({
+                    enumerable: false,
+                    value:      require('./model.ldp.Resource.js')({
                         'definedBy': definedBy,
                         'namespace': namespace,
                         'vocab':     vocab
@@ -56,7 +66,8 @@ module.exports = ({
                 }
             });
             Object.defineProperty(this, 'RDFSource', {
-                value: require('./model.ldp.RDFSource.js')({
+                enumerable: true,
+                value:      require('./model.ldp.RDFSource.js')({
                     'definedBy': definedBy,
                     'namespace': namespace,
                     'vocab':     vocab,
@@ -64,7 +75,8 @@ module.exports = ({
                 })
             });
             Object.defineProperty(this, 'NonRDFSource', {
-                value: require('./model.ldp.NonRDFSource.js')({
+                enumerable: true,
+                value:      require('./model.ldp.NonRDFSource.js')({
                     'definedBy': definedBy,
                     'namespace': namespace,
                     'vocab':     vocab,
@@ -72,7 +84,8 @@ module.exports = ({
                 })
             });
             Object.defineProperty(this, 'Container', {
-                value: require('./model.ldp.Container.js')({
+                enumerable: true,
+                value:      require('./model.ldp.Container.js')({
                     'definedBy': definedBy,
                     'namespace': namespace,
                     'vocab':     vocab,
@@ -80,7 +93,8 @@ module.exports = ({
                 })
             });
             Object.defineProperty(this, 'BasicContainer', {
-                value: require('./model.ldp.BasicContainer.js')({
+                enumerable: true,
+                value:      require('./model.ldp.BasicContainer.js')({
                     'definedBy': definedBy,
                     'namespace': namespace,
                     'vocab':     vocab,

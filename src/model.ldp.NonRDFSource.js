@@ -127,6 +127,7 @@ module.exports = ({
     Object.defineProperties(NonRDFSource, {
         '@id':             {value: `${namespace}${vocab}NonRDFSource`},
         '@type':           {value: "rdfs:Class"},
+        'fua:targetClass': {'value': "ldp:NonRDFSource"},
         'rdfs:label':      {value: "NonRDFSource"},
         'rdfs:comment':    {value: "A Linked Data Platform RDF Source (LDP-RS) that also conforms to additional patterns and conventions for managing membership. Readers should refer to the specification defining this ontology for the list of behaviors associated with it."},
         'rdfs:subClassOf': {value: [{'@id': "ldp:Resource"}]},
