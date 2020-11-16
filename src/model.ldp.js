@@ -63,6 +63,10 @@ module.exports = ({
                         'namespace': namespace,
                         'vocab':     vocab
                     })
+                },
+                'rdfs:isDefinedBy':              {
+                    enumerable: false,
+                    value:      definedBy
                 }
             });
             Object.defineProperty(this, 'RDFSource', {
