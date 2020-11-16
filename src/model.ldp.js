@@ -1,12 +1,10 @@
 module.exports = ({
-
                       //'IM': IM,
                       //'hrt': hrt = () => Date.now() / 1000,
                       //'uuid': uuid,
                       //'space': space,
                       //'builder': builder
                       //,
-
                   }) => {
 
     const
@@ -17,10 +15,13 @@ module.exports = ({
         vocab     = ":"
     ;
     let
+        namespace = definedBy,
         ldp
     ;
 
     class LDP extends IM['Ontology'] {
+
+        #factory = [];
 
         constructor() {
 
@@ -105,11 +106,23 @@ module.exports = ({
                     'Container': this['Container']
                 })
             });
-
+            this.#factory = [
+                this['Resource'],
+                this['RDFSource'],
+                this['NonRDFSource'],
+                this['Container'],
+                this['BasicContainer']
+            ];
         } // constructor
+
+        get $factory() {
+            return this.#factory;
+        }
+
     } // class RDF
 
-    ldp = new LDP();
+    ldp          = new LDP();
+    model['ldp'] = ldp;
 
     return {'ldp': ldp};
 
