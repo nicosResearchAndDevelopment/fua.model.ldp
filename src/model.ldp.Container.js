@@ -21,8 +21,8 @@ module.exports = ({
         node                            = RDFSource(node, parameter);
         node                            = IM['$add_array'](
             node,
-            "contains",
-            ((node['contains'] && node['contains'].length > 0) ? IM['$build_array'](node['contains']) : undefined),
+            "ldp:contains",
+            ((node['ldp:contains'] && node['ldp:contains'].length > 0) ? IM['$build_array'](node['ldp:contains']) : undefined),
             parameter['contains_validator']
         );
         node                            = IM['$instance_serializer'](node, Container);
