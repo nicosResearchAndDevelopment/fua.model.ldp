@@ -29,7 +29,7 @@ module.exports = ({
 
         return node;
 
-    } // Container;
+    } // Container
 
     Object.defineProperties(Container, {
         '@id':             {value: `${namespace}${vocab}Container`},
