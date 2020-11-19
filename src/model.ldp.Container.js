@@ -1,15 +1,11 @@
 module.exports = ({
-                      //'IM':        IM,
                       'definedBy': definedBy,
-                      'namespace': namespace,
-                      'vocab':     vocab,
-                      //'hrt':       hrt = () => Date.now() / 1000,
-                      //'uuid':      uuid,
-                      //'space':     space,
-                      'RDFSource': RDFSource
+                      'prefix':    prefix
                   }) => {
     const
-        IM = fua['model']['IM']
+        model     = fua['model'],
+        IM        = model['IM'],
+        RDFSource = model['ldp']['RDFSource']
     ; // const
 
     let Container = (node, parameter = {
@@ -17,7 +13,7 @@ module.exports = ({
     }) => {
 
         parameter['contains_validator'] = ((parameter['contains_validator']) ? parameter['contains_validator'] : IM['$default_validator']);
-        node['@type']                   = IM['$build_type'](node['@type'], "ldp:Container");
+        node['@type']                   = IM['$build_type'](node['@type'], `${prefix}:Container`);
         node                            = RDFSource(node, parameter);
         node                            = IM['$add_array'](
             node,
@@ -32,10 +28,10 @@ module.exports = ({
     } // Container
 
     Object.defineProperties(Container, {
-        '@id':             {value: `${namespace}${vocab}Container`},
+        '@id':             {value: `${prefix}:Container`},
         '@type':           {value: "rdfs:Class"},
         'fua:targetClass': {'value': "ldp:Container"},
-        'rdfs:label':      {value: "Container"},
+        'rdfs:label':      {value: "LDP Container"},
         'rdfs:comment':    {value: "A Linked Data Platform RDF Source (LDP-RS) that also conforms to additional patterns and conventions for managing membership. Readers should refer to the specification defining this ontology for the list of behaviors associated with it."},
         'rdfs:subClassOf': {value: [{'@id': "ldp:RDFSource"}]},
         //
@@ -48,6 +44,8 @@ module.exports = ({
             }
         }
     });
+
+    model[prefix]['Container'] = Container;
 
     return Container;
 

@@ -1,23 +1,19 @@
 module.exports = ({
-                      //'IM': IM,
-                      //'hrt': hrt = () => Date.now() / 1000,
-                      //'uuid': uuid,
-                      //'space': space,
-                      //'builder': builder
-                      //,
+                      'prefix':    prefix = "ldp",
+                      'definedBy': definedBy = "http://www.w3.org/ns/ldp#"
                   }) => {
 
     const
         model     = fua['model'],
         IM        = model['IM'],
-        prefix    = "ldp",
-        definedBy = "http://www.w3.org/ns/ldp#",
+
         vocab     = ":"
     ;
     let
-        namespace = definedBy,
         ldp
     ;
+
+    model[prefix] = {};
 
     class LDP extends IM['Ontology'] {
 
@@ -55,14 +51,13 @@ module.exports = ({
                     value:      "The W3C Linked Data Platform (LDP) Vocabulary"
                 },
                 'vann:preferredNamespaceUri':    {enumerable: false, value: definedBy},
-                'vann:preferredNamespacePrefix': {enumerable: false, value: namespace},
+                'vann:preferredNamespacePrefix': {enumerable: false, value: prefix},
                 // #
                 'Resource':                      {
                     enumerable: false,
                     value:      require('./model.ldp.Resource.js')({
                         'definedBy': definedBy,
-                        'namespace': namespace,
-                        'vocab':     vocab
+                        'prefix': prefix
                     })
                 },
                 'rdfs:isDefinedBy':              {
@@ -74,7 +69,7 @@ module.exports = ({
                 enumerable: true,
                 value:      require('./model.ldp.RDFSource.js')({
                     'definedBy': definedBy,
-                    'namespace': namespace,
+                    'prefix': prefix,
                     'vocab':     vocab,
                     'Resource':  this['Resource']
                 })
@@ -83,7 +78,7 @@ module.exports = ({
                 enumerable: true,
                 value:      require('./model.ldp.NonRDFSource.js')({
                     'definedBy': definedBy,
-                    'namespace': namespace,
+                    'prefix': prefix,
                     'vocab':     vocab,
                     'Resource':  this['Resource']
                 })
@@ -92,7 +87,7 @@ module.exports = ({
                 enumerable: true,
                 value:      require('./model.ldp.Container.js')({
                     'definedBy': definedBy,
-                    'namespace': namespace,
+                    'prefix': prefix,
                     'vocab':     vocab,
                     'RDFSource': this['RDFSource']
                 })
@@ -101,7 +96,7 @@ module.exports = ({
                 enumerable: true,
                 value:      require('./model.ldp.BasicContainer.js')({
                     'definedBy': definedBy,
-                    'namespace': namespace,
+                    'prefix': prefix,
                     'vocab':     vocab,
                     'Container': this['Container']
                 })
@@ -119,11 +114,10 @@ module.exports = ({
             return this.#factory;
         }
 
-    } // class RDF
+    } // class LDP
 
-    ldp          = new LDP();
-    model['ldp'] = ldp;
+    model['ldp'] = new LDP();
 
-    return {'ldp': ldp};
+    return {'ldp': model['ldp']};
 
 }; // module.export :: IM.ldp

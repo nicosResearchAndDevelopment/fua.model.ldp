@@ -1,21 +1,14 @@
 module.exports = ({
-                      //'path':      path,
-                      //'fs':        fs
-                      //,
-                      //'IM':        IM,
                       'definedBy': definedBy,
-                      'namespace': namespace,
-                      'vocab':     vocab,
-                      //'hrt':       hrt = () => Date.now() / 1000,
-                      //'uuid':      uuid,
-                      //'space':     space,
-                      'Resource':  Resource
+                      'prefix':    prefix
                   }) => {
 
     const
-        fs   = require("fs"),
-        path = require("path"),
-        IM   = fua['model']['IM']
+        fs       = require("fs"),
+        path     = require("path"),
+        model    = fua['model'],
+        IM       = model['IM'],
+        Resource = model[prefix]['Resource']
     ; // const
 
     const ___content_empty___ = Symbol(42);
@@ -66,7 +59,7 @@ module.exports = ({
 
             // error first
             if (!parameter['content'] && !parameter['absolute_path'])
-                throw new Error(`ldp.NonRDFSource : 'absolute path to resource is missing.`);
+                throw new Error(`fua.model.ldp.NonRDFSource : 'absolute path to resource is missing.`);
 
             parameter['content']       = (parameter['content'] || ___content_empty___);
             parameter['size']          = undefined;
@@ -125,12 +118,12 @@ module.exports = ({
     } // function NonRDFSource()
 
     Object.defineProperties(NonRDFSource, {
-        '@id':             {value: `${namespace}${vocab}NonRDFSource`},
+        '@id':             {value: `${prefix}:NonRDFSource`},
         '@type':           {value: "rdfs:Class"},
         'fua:targetClass': {'value': "ldp:NonRDFSource"},
-        'rdfs:label':      {value: "NonRDFSource"},
+        'rdfs:label':      {value: "LDP NonRDFSource"},
         'rdfs:comment':    {value: "A Linked Data Platform RDF Source (LDP-RS) that also conforms to additional patterns and conventions for managing membership. Readers should refer to the specification defining this ontology for the list of behaviors associated with it."},
-        'rdfs:subClassOf': {value: [{'@id': "ldp:Resource"}]},
+        'rdfs:subClassOf': {value: [{'@id': `${prefix}:Resource`}]},
         //
         '$serialize':      {
             value: (instance, node) => {
@@ -142,7 +135,7 @@ module.exports = ({
         }
     });
 
-    //Object.seal(NonRDFSource);
+    model[prefix]['NonRDFSource'] = NonRDFSource;
 
     return NonRDFSource;
 

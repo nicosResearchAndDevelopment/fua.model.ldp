@@ -1,33 +1,27 @@
 module.exports = ({
-                      //'IM':        IM,
                       'definedBy': definedBy,
-                      'namespace': namespace,
-                      'vocab':     vocab
-                      //'hrt':       hrt = () => Date.now() / 1000,
-                      //'uuid':      uuid,
-                      //'space':     space
+                      'prefix': prefix
                   }) => {
 
     const
         model         = fua['model'],
         IM            = model['IM'],
         rdfs_Resource = model['rdfs']['Resource']
-        //rdfs_Resource = space.get(`rdfs:Resource`)
     ; // const
 
     //error first
     if (!rdfs_Resource)
-        throw new Error(`IM.ldp.Resource : 'rdfs:Resource is missing.`);
+        throw new Error(`fua.model.ldp.Resource : 'rdfs:Resource' is missing.`);
 
     function Resource(node, parameter) {
-        node['@type'] = IM['$build_type'](node['@type'], "ldp:Resource");
+        node['@type'] = IM['$build_type'](node['@type'], `${prefix}:Resource`);
         node          = rdfs_Resource(node, parameter);
         node          = IM['$instance_serializer'](node, Resource);
         return node;
     } // function Resource()
 
     Object.defineProperties(Resource, {
-        '@id':             {value: `${namespace}${vocab}Resource`},
+        '@id':             {value: `${prefix}:Resource`},
         '@type':           {value: "rdfs:Class"},
         'fua:targetClass': {value: "ldp:Resource"},
         'rdfs:label':      {value: "Resource"},
@@ -40,6 +34,7 @@ module.exports = ({
     //REM: if done here derived will be stopped...
     //Object.seal(Resource);
 
+    model[prefix]['Resource'] = Resource;
     return Resource;
 
 }; // module.export :: IM.ldp.Resource
