@@ -1,8 +1,9 @@
 const
-    expect                               = require('expect'),
-    {describe, test, beforeEach}         = require('mocha'),
-    { createSpace, joinPath} = require('./data/test-util.js'),
-    ldpModel                             = require('../src/model.ldp.js');
+    expect                       = require('expect'),
+    {describe, test, beforeEach} = require('mocha'),
+    {Resource}                   = require('@nrd/fua.module.space'),
+    {createSpace, joinPath}      = require('./data/test-util.js'),
+    ldpModel                     = require('../src/model.ldp.js');
 
 describe('model.ldp.Resource', function () {
 
@@ -16,17 +17,21 @@ describe('model.ldp.Resource', function () {
     });
 
     test('Resource should be build', async function () {
+        /** @type {fua.model.ldp.Resource} */
         const resource = await builder('http://localhost/');
+        expect(resource).toBeInstanceOf(Resource);
         expect(resource).toBeInstanceOf(ldpModel.get('ldp:Resource'));
     });
 
     test('Resource should load', async function () {
+        /** @type {fua.model.ldp.Resource} */
         const resource = await builder('http://localhost/');
         await resource.load();
         console.log(resource);
     });
 
     test('Resource should serialize', async function () {
+        /** @type {fua.model.ldp.Resource} */
         const resource = await builder('http://localhost/');
         await resource.load();
         console.log(await resource.serialize());
