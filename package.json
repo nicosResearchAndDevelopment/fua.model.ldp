@@ -1,0 +1,37 @@
+{
+  "name": "@nrd/fua.model.ldp",
+  "version": "1.0.0",
+  "description": "Linked Data Platform",
+  "main": "src/model.ldp.js",
+  "files": [
+    "src/*"
+  ],
+  "dependencies": {
+    "@nrd/fua.core.util": "1.0.0",
+    "@nrd/fua.module.space": "1.0.0",
+    "@nrd/fua.module.rdf": "1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^8.2.1",
+    "expect": "^26.6.2",
+    "@nrd/fua.module.persistence": "1.0.0",
+    "@nrd/fua.module.persistence.inmemory": "1.0.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "mocha": {
+    "bail": false,
+    "recursive": false,
+    "spec": "test/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@git02.int.nsc.ag:10022/Research/fua/lib/model/ldp.git"
+  },
+  "keywords": [
+    "ldp"
+  ],
+  "author": "spetrac@nicos-ag.com",
+  "license": "UNLICENSED"
+}
