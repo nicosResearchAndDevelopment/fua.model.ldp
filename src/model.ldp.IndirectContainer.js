@@ -4,12 +4,10 @@ const
     Container = require('./model.ldp.Container.js');
 
 /**
- * @class
  * @alias fua.model.ldp.IndirectContainer
+ * @class
  * @extends {fua.model.ldp.Container}
  */
 module.exports = class IndirectContainer extends Container {
-
-    // TODO
 
 }; // IndirectContainer

@@ -18,26 +18,28 @@ describe('model.ldp.Container', function () {
 
     test('Container should be build', async function () {
         /** @type {fua.model.ldp.Container} */
-        const resource = await builder('http://localhost/');
-        expect(resource).toBeInstanceOf(Resource);
-        expect(resource).toBeInstanceOf(ldpModel.get('ldp:Container'));
+        const container = await builder('http://localhost/');
+        expect(container).toBeInstanceOf(Resource);
+        expect(container).toBeInstanceOf(ldpModel.get('ldp:Container'));
     });
 
     test('Container should load', async function () {
         /** @type {fua.model.ldp.Container} */
-        const resource = await builder('http://localhost/');
-        await resource.load();
-        console.log(resource);
+        const container = await builder('http://localhost/');
+        await container.load();
+        console.log(container);
 
         expect(container['ldp:contains']).toBeInstanceOf(Array);
         expect(container['ldp:contains']).toHaveLength(2);
     });
 
-    test('Container should serialize', async function () {
+    test('Container should serialize as turtle', async function () {
         /** @type {fua.model.ldp.Container} */
-        const resource = await builder('http://localhost/');
-        await resource.load();
-        console.log(await resource.serialize());
+        const container = await builder('http://localhost/');
+        await container.load();
+        const turtle = await container.serialize();
+        expect(typeof turtle).toBe('string');
+        console.log(turtle);
     });
 
 });

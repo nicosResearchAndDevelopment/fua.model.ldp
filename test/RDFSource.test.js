@@ -30,11 +30,13 @@ describe('model.ldp.RDFSource', function () {
         console.log(resource);
     });
 
-    test('RDFSource should serialize', async function () {
+    test('RDFSource should serialize as turtle', async function () {
         /** @type {fua.model.ldp.RDFSource} */
         const resource = await builder('http://localhost/person/jlangkau');
         await resource.load();
-        console.log(await resource.serialize());
+        const turtle = await resource.serialize();
+        expect(typeof turtle).toBe('string');
+        console.log(turtle);
     });
 
 });

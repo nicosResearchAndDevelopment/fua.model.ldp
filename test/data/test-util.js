@@ -9,11 +9,10 @@ const
 
 exports.joinPath = path.join;
 
-exports.createSpace = async function (...ttlFiles) {
+exports.createStore = async function (...ttlFiles) {
     const
         factory    = new DataFactory(context),
         store      = new InmemoryStore(null, factory),
-        space      = new Space({store}),
         [dataFile] = await loadDataFiles(ttlFiles.map((filename) => ({
             'dct:format':     'text/turtle',
             'dct:identifier': path.join(__dirname, filename)
@@ -22,6 +21,26 @@ exports.createSpace = async function (...ttlFiles) {
     expect(dataFile?.dataset).toBeInstanceOf(Dataset);
     await store.add(dataFile.dataset);
     expect(await store.size()).toBeGreaterThan(0);
+
+    function quadToString(quad) {
+        const
+            subjectId   = factory.termToId(quad.subject),
+            predicateId = factory.termToId(quad.predicate),
+            objectId    = factory.termToId(quad.object);
+        return `(${subjectId})-[${predicateId}]->(${objectId})`;
+    }
+
+    store.on('added', quad => console.log('quad-added:', quadToString(quad)));
+    store.on('deleted', quad => console.log('quad-deleted:', quadToString(quad)));
+    store.on('error', err => console.error(err?.stack ?? err));
+
+    return store;
+}; // createStore
+
+exports.createSpace = async function (...ttlFiles) {
+    const
+        store = await exports.createStore(...ttlFiles),
+        space = new Space({store});
 
     space.on('node-created', node => console.log('node-created:', node.id));
     space.on('node-loaded', node => console.log('node-loaded:', node.id));

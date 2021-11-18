@@ -18,16 +18,16 @@ describe('model.ldp.IndirectContainer', function () {
 
     test('IndirectContainer should be build', async function () {
         /** @type {fua.model.ldp.IndirectContainer} */
-        const resource = await builder('http://localhost/indirect-bugs');
-        expect(resource).toBeInstanceOf(Resource);
-        expect(resource).toBeInstanceOf(ldpModel.get('ldp:IndirectContainer'));
+        const container = await builder('http://localhost/indirect-bugs');
+        expect(container).toBeInstanceOf(Resource);
+        expect(container).toBeInstanceOf(ldpModel.get('ldp:IndirectContainer'));
     });
 
     test('IndirectContainer should load', async function () {
         /** @type {fua.model.ldp.IndirectContainer} */
-        const resource = await builder('http://localhost/indirect-bugs');
-        await resource.load();
-        console.log(resource);
+        const container = await builder('http://localhost/indirect-bugs');
+        await container.load();
+        console.log(container);
 
         expect(container['ldp:contains']).toBeInstanceOf(Array);
         expect(container['ldp:membershipResource']).toBeInstanceOf(Resource);
@@ -35,11 +35,13 @@ describe('model.ldp.IndirectContainer', function () {
         expect(container['ldp:insertedContentRelation']).toBeInstanceOf(Resource);
     });
 
-    test('IndirectContainer should serialize', async function () {
+    test('IndirectContainer should serialize as turtle', async function () {
         /** @type {fua.model.ldp.IndirectContainer} */
-        const resource = await builder('http://localhost/indirect-bugs');
-        await resource.load();
-        console.log(await resource.serialize());
+        const container = await builder('http://localhost/indirect-bugs');
+        await container.load();
+        const turtle = await container.serialize();
+        expect(typeof turtle).toBe('string');
+        console.log(turtle);
     });
 
 });

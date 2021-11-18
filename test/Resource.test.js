@@ -30,11 +30,13 @@ describe('model.ldp.Resource', function () {
         console.log(resource);
     });
 
-    test('Resource should serialize', async function () {
+    test('Resource should serialize as turtle', async function () {
         /** @type {fua.model.ldp.Resource} */
         const resource = await builder('http://localhost/');
         await resource.load();
-        console.log(await resource.serialize());
+        const turtle = await resource.serialize();
+        expect(typeof turtle).toBe('string');
+        console.log(turtle);
     });
 
 });

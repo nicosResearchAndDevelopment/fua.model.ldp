@@ -1,6 +1,7 @@
 const
     util  = require('./model.ldp.util.js'),
     space = require('@nrd/fua.module.space'),
+    /** @type {fua.module.space.Model} */
     model = module.exports = new space.Model();
 
 model.set(util.iri.Resource, require('./model.ldp.Resource.js'));
