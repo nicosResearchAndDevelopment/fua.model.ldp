@@ -5,7 +5,7 @@ const
         assert: new _util.Assert('model.ldp')
     };
 
-util.iris = Object.freeze({
+util.iri = Object.freeze({
     type:                    'rdf:type',
     identifier:              'dct:identifier',
     format:                  'dct:format',
