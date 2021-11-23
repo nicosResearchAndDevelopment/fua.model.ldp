@@ -1,14 +1,14 @@
 const
-    util      = require('./model.ldp.util.js'),
-    model     = require('./model.ldp.js'),
-    Container = require('./model.ldp.Container.js');
+    util          = require('./model.ldp.util.js'),
+    model_ldp     = require('./model.ldp.js'),
+    ldp_Container = require('./model.ldp.Container.js');
 
 /**
  * @alias fua.model.ldp.DirectContainer
  * @class
  * @extends {fua.model.ldp.Container}
  */
-module.exports = class DirectContainer extends Container {
+module.exports = class DirectContainer extends ldp_Container {
 
     // async load() {
     //     await super.load();

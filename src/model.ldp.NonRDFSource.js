@@ -1,7 +1,7 @@
 const
     util                  = require('./model.ldp.util.js'),
-    model                 = require('./model.ldp.js'),
-    Resource              = require('./model.ldp.Resource.js'),
+    model_ldp             = require('./model.ldp.js'),
+    ldp_Resource          = require('./model.ldp.Resource.js'),
     {join: joinPath}      = require('path'),
     {readFile, writeFile} = require('fs/promises');
 
@@ -10,7 +10,7 @@ const
  * @class
  * @extends {fua.model.ldp.Resource}
  */
-module.exports = class NonRDFSource extends Resource {
+module.exports = class NonRDFSource extends ldp_Resource {
 
     async load() {
         await super.load();

@@ -1,15 +1,15 @@
 const
-    util               = require('./model.ldp.util.js'),
-    model              = require('./model.ldp.js'),
-    space              = require('@nrd/fua.module.space'),
-    {serializeDataset} = require('@nrd/fua.module.rdf');
+    util                       = require('./model.ldp.util.js'),
+    model_ldp                  = require('./model.ldp.js'),
+    {Resource: space_Resource} = require('@nrd/fua.module.space'),
+    {serializeDataset}         = require('@nrd/fua.module.rdf');
 
 /**
  * @alias fua.model.ldp.Resource
  * @class
  * @extends {fua.module.space.Resource}
  */
-module.exports = class Resource extends space.Resource {
+module.exports = class Resource extends space_Resource {
 
     #param = null;
 
@@ -43,8 +43,8 @@ module.exports = class Resource extends space.Resource {
         this['@type'] = this.node.type;
         if (created) this[util.iri.created] = created;
         if (modified) this[util.iri.modified] = modified;
-        if (constrainedBy.length > 0) this[util.iri.constrainedBy] = await Promise.all(constrainedBy.map(node => model.build(node, this.param)));
-        if (member.length > 0) this[util.iri.member] = await Promise.all(member.map(node => model.build(node, this.param)));
+        if (constrainedBy.length > 0) this[util.iri.constrainedBy] = await Promise.all(constrainedBy.map(node => model_ldp.build(node, this.param)));
+        if (member.length > 0) this[util.iri.member] = await Promise.all(member.map(node => model_ldp.build(node, this.param)));
     } // Resource#load
 
     async save() {
