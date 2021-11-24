@@ -11,7 +11,7 @@ const
 module.exports = class Container extends ldp_RDFSource {
 
     async load() {
-        await super.load();
+        /** ldp:RDFSource */ await super.load();
         await this.node.load([
             util.iri.contains,
             util.iri.membershipResource,
