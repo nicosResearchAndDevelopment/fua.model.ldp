@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@git02.int.nsc.ag:10022/Research/fua/lib/model/ldp.git"
+    "url": "ssh://git@git02.int.nsc.ag:10022/research/fua/lib/model/ldp.git"
   },
   "keywords": [
     "ldp"
