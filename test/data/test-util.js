@@ -1,11 +1,11 @@
 const
     expect                 = require('expect'),
     path                   = require('path'),
-    {Space}                = require('@nrd/fua.module.space'),
+    {Space}                = require('@fua/module.space'),
     context                = require('./context.json'),
-    {DataFactory, Dataset} = require('@nrd/fua.module.persistence'),
-    InmemoryStore          = require('@nrd/fua.module.persistence.inmemory'),
-    {loadDataFiles}        = require('@nrd/fua.module.rdf');
+    {DataFactory, Dataset} = require('@fua/module.persistence'),
+    InmemoryStore          = require('@fua/module.persistence.inmemory'),
+    {loadDataFiles}        = require('@fua/module.rdf');
 
 exports.joinPath = path.join;
 

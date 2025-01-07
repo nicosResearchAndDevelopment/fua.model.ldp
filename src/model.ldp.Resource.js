@@ -1,8 +1,8 @@
 const
     util                       = require('./model.ldp.util.js'),
     model_ldp                  = require('./model.ldp.js'),
-    {Resource: space_Resource} = require('@nrd/fua.module.space'),
-    {serializeDataset}         = require('@nrd/fua.module.rdf');
+    {Resource: space_Resource} = require('@fua/module.space'),
+    {serializeDataset}         = require('@fua/module.rdf');
 
 /**
  * @alias fua.model.ldp.Resource

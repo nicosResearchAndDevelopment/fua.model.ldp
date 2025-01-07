@@ -1,5 +1,5 @@
 const
-    _util = require('@nrd/fua.core.util'),
+    _util = require('@fua/core.util'),
     util  = {
         ..._util,
         assert: new _util.Assert('model.ldp')

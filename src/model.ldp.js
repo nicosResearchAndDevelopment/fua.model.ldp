@@ -1,6 +1,6 @@
 const
     util      = require('./model.ldp.util.js'),
-    space     = require('@nrd/fua.module.space'),
+    space     = require('@fua/module.space'),
     /** @type {fua.module.space.Model} */
     model_ldp = module.exports = new space.Model();
 

@@ -1,7 +1,7 @@
 const
     expect                       = require('expect'),
     {describe, test, beforeEach} = require('mocha'),
-    {Resource}                   = require('@nrd/fua.module.space'),
+    {Resource}                   = require('@fua/module.space'),
     {createSpace, joinPath}      = require('./data/test-util.js'),
     ldpModel                     = require('../src/model.ldp.js');
 

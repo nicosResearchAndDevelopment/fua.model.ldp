@@ -5,7 +5,7 @@ Linked Data Platform
 ## Usage
 
 ```js
-model   = require('@nrd/fua.model.ldp');    // require the model
+model   = require('@fua/model.ldp');    // require the model
 param   = {
     baseIRI:  'http://localhost/',          // necessary but currently not used
     basePath: __dirname                     // necessary for path resolvement
